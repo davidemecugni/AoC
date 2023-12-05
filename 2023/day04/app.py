@@ -2,7 +2,6 @@ import aocd
 from collections import defaultdict
 import re
 rx = re.compile(r'[0-9]+')
-sym_num = defaultdict(list)
 debug = """Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
 Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
@@ -16,6 +15,7 @@ divided = []
 for row in data:
     x = row.split("|")
     divided.append(x)
+#Task 1
 sum1 = 0
 for winning, numbers in divided:
     s = 0
@@ -27,7 +27,8 @@ for winning, numbers in divided:
                 else:
                     s*=2
     sum1 += s
-#print(sum1)
+#27454
+print(sum1)
 #data = aocd.get_data().split("\n")
 #print(data)
 
@@ -43,8 +44,10 @@ def pointsFromCars(card):
                 
                 s+=1
     return s
+#Task 2
 copies = 0
 d = {}
+#Each card weights 1 in the beginning
 for i in range(len(divided)):
     d[i] = 1
 for i,card in enumerate(divided):
@@ -53,14 +56,12 @@ for i,card in enumerate(divided):
     j = i + 1
     times = 0
     while times<points and j<len(divided):
-        if j in d.keys():
-            d[j] += 1*d[i]
-        else:
-            d[j] = 1
+        d[j] += d[i]
         j+=1
         times += 1
 sum2 = 0
 for i in d.values():
     sum2 += i
 print(sum2)
+#6857330
 aocd.submit(sum2)
