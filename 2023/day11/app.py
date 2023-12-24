@@ -1,9 +1,5 @@
 import aocd
-import sys
-import re
 import itertools
-sys.setrecursionlimit(100000)
-rx = re.compile(r'[0-9]+')
 
 data = aocd.get_data()
 debug = """...#......
